@@ -1,29 +1,28 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
-    public float speed = 0.5f;
-    public Rigidbody2D player;
-    Vector2 move;
-    public Animator animator;
     private Inventory inventory;
-    // Update is called once per frame
+    [SerializeField] private UI_Inventory uiInventory;
+    
     private void Awake()
     {
         inventory = new Inventory();
+        uiInventory.SetInventory(inventory);
+        ItemWorld.SpawnItemWorld(new Vector3(1, 1), new Item { itemType = Item.ItemType.Sword, amount = 1 });
+        ItemWorld.SpawnItemWorld(new Vector3(-1, 1), new Item { itemType = Item.ItemType.Journal, amount = 1 });
     }
-    void Update()
+    private void OnTriggerEnter2D(Collider2D collider)
     {
-        move.x = Input.GetAxisRaw("Horizontal");
-        move.y = Input.GetAxisRaw("Vertical");
-        animator.SetFloat("Horizontal", move.x);
-        animator.SetFloat("Vertical", move.y);
-        animator.SetFloat("Speed", move.sqrMagnitude);
-    }
-    private void FixedUpdate()
-    {
-        player.MovePosition(player.position + move * speed * Time.fixedDeltaTime);
+        ItemWorld itemWorld = collider.GetComponent<ItemWorld>();
+        if(itemWorld != null)
+        {
+            Debug.Log("Colliding");
+            inventory.AddItem(itemWorld.GetItem());
+            itemWorld.DestroySelf();
+        }
     }
 }
