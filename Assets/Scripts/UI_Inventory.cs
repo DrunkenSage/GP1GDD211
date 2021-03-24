@@ -14,10 +14,20 @@ public class UI_Inventory : MonoBehaviour
     public void SetInventory(Inventory inventory)
     {
         this.inventory = inventory;
+        inventory.OnItemListChanged += Inventory_OnItemListChanged;
+        RefreshInventoryItem();
+    }
+    private void Inventory_OnItemListChanged(object sender, System.EventArgs e)
+    {
         RefreshInventoryItem();
     }
     private void RefreshInventoryItem()
     {
+        foreach(Transform child in itemSlotContainer)
+        {
+            if (child == itemSlotTemplate) continue;
+            Destroy(child.gameObject);
+        }
         int x = -8;
         int y = 0;
         int amount = 0;
