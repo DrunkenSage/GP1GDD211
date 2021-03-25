@@ -58,7 +58,7 @@ public class FadeScript : MonoBehaviour
 			{
 				AlphaValue = 1.0f;
 				FadeType = FADETYPE.NONE;
-				ChangeLevel();
+				//ChangeLevel();
 			}
 		}
 		else if(FadeType == FADETYPE.RESPAWN)
@@ -97,10 +97,10 @@ public class FadeScript : MonoBehaviour
 	/// <summary>
 	/// Changes the level to the next level in the list
 	/// </summary>
-	private void ChangeLevel()
-	{
-		int levelID = Application.loadedLevel + 1;
-		if(levelID > Application.levelCount - 1){ levelID = 0; }
-		Application.LoadLevel(levelID);
-	}
+	// private void ChangeLevel()
+	// {
+	// 	int levelID = Application.loadedLevel + 1;
+	// 	if(levelID > Application.levelCount - 1){ levelID = 0; }
+	// 	Application.LoadLevel(levelID);
+	// }
 }

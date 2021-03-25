@@ -29,9 +29,9 @@ public class Interact : MonoBehaviour
         }
     }
 
-    private void OnTriggerStay(Collider other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
-       // Debug.Log("In Range");
+        Debug.Log("In Range");
         isNear = true;
         interactWithMeText.text = "Press F";
     }
