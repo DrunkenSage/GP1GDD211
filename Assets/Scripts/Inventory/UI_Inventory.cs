@@ -28,8 +28,8 @@ public class UI_Inventory : MonoBehaviour
             if (child == itemSlotTemplate) continue;
             Destroy(child.gameObject);
         }
-        int x = -8;
-        int y = 0;
+        int x = 0;
+        int y = 5;
         int amount = 0;
         float itemsSlotCellSize = 30f;
         foreach (Item item in inventory.GetItemList())
@@ -39,13 +39,9 @@ public class UI_Inventory : MonoBehaviour
             itemSlotRectTransform.anchoredPosition = new Vector2(x * itemsSlotCellSize, y * itemsSlotCellSize);
             Image image = sprite.GetComponent<Image>();
             image.sprite = item.GetSprite();
-            x+=4;
+            y-=3;
             amount++;
-            if (x > 16 && amount<=3)
-            {
-                x = 0;
-                y++;
-            }
+
             
         }
     }

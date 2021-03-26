@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
-    public float speed = 0.5f;
+    public float speed = 5f;
     public Rigidbody2D rb;
     Vector2 move;
     public Animator animator;
+    public bool isRunning;
     void Update()
     {
         move.x = Input.GetAxisRaw("Horizontal");
@@ -15,6 +16,16 @@ public class Movement : MonoBehaviour
         animator.SetFloat("Horizontal", move.x);
         animator.SetFloat("Vertical", move.y);
         animator.SetFloat("Speed", move.sqrMagnitude);
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            isRunning = true;
+            speed = 9f;
+        }
+        else
+        {
+            isRunning = false;
+            speed = 6f;
+        }
     }
     private void FixedUpdate()
     {
