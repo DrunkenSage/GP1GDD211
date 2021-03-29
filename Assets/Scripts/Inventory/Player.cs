@@ -7,6 +7,8 @@ public class Player : MonoBehaviour
 {
     private Inventory inventory;
     [SerializeField] private UI_Inventory uiInventory;
+    public GameObject button1;
+    public GameObject button2;
     
     private void Awake()
     {
@@ -23,6 +25,8 @@ public class Player : MonoBehaviour
             Debug.Log("Colliding");
             inventory.AddItem(itemWorld.GetItem());
             itemWorld.DestroySelf();
+            button1.SetActive(true);
+            button2.SetActive(true);
         }
     }
 }

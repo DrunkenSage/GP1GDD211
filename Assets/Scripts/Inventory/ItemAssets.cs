@@ -14,4 +14,6 @@ public class ItemAssets : MonoBehaviour
     public Transform pfItemWorld;
     public Sprite swordSprite;
     public Sprite journalSprite;
+  
+
 }
