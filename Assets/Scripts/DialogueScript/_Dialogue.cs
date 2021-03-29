@@ -10,6 +10,7 @@ public class _Dialogue {
 
     [TextArea(3,10)]
     public string[] sentences;
+    public bool HasSkillOn;
 
 }
     // Start is called before the first frame update
